@@ -9,79 +9,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
 
     :root {
-      --bg:         #F2F4F7;
-      --card:       #FFFFFF;
-      --border:     #E4E7EC;
-      --text-dark:  #101828;
-      --text-mid:   #475467;
-      --text-light: #98A2B3;
-      --accent:     #101828;
-      --accent-2:   #344054;
-      --radius:     14px;
-      --shadow:     0 1px 3px rgba(16,24,40,0.1), 0 1px 2px rgba(16,24,40,0.06);
-      --shadow-lg:  0 12px 40px rgba(16,24,40,0.12);
+      --bg:        #F2F4F7;
+      --card:      #FFFFFF;
+      --border:    #E4E7EC;
+      --dark:      #101828;
+      --mid:       #475467;
+      --light:     #98A2B3;
+      --radius:    14px;
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Inter', -apple-system, sans-serif;
       background: var(--bg);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 32px 16px 48px;
-      color: var(--text-dark);
+      color: var(--dark);
     }
 
     /* ── HEADER ── */
     .header {
       width: 100%;
       max-width: 420px;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      margin-bottom: 20px;
     }
 
-    .logo-mark {
-      width: 44px;
-      height: 44px;
-      background: var(--accent);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .logo-mark svg {
-      width: 24px;
-      height: 24px;
-      fill: none;
-      stroke: #fff;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .header-text h1 {
-      font-size: 18px;
+    .header h1 {
+      font-size: 22px;
       font-weight: 700;
-      color: var(--text-dark);
-      letter-spacing: -0.3px;
+      color: var(--dark);
+      letter-spacing: -0.4px;
     }
 
-    .header-text p {
+    .header p {
       font-size: 13px;
-      color: var(--text-mid);
-      margin-top: 1px;
+      color: var(--mid);
+      margin-top: 3px;
     }
 
     /* ── CARTE ── */
@@ -90,43 +61,36 @@
       max-width: 420px;
       background: var(--card);
       border-radius: 20px;
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(16,24,40,0.11);
     }
 
-    .card-body {
-      padding: 28px 24px;
-    }
+    .card-body { padding: 28px 24px 24px; }
+    .card-footer { padding: 0 24px 24px; }
 
-    /* ── SÉPARATEUR DE SECTION ── */
-    .section-label {
+    /* ── LABELS ── */
+    .label {
       font-size: 11px;
       font-weight: 600;
-      color: var(--text-light);
+      color: var(--light);
       text-transform: uppercase;
-      letter-spacing: 0.7px;
+      letter-spacing: 0.6px;
       margin-bottom: 10px;
     }
 
-    .groupe {
-      margin-bottom: 24px;
-    }
+    .groupe { margin-bottom: 24px; }
 
-    /* ── CHAMP TÉLÉPHONE ── */
-    .input-wrap {
-      position: relative;
-    }
+    /* ── TÉLÉPHONE ── */
+    .input-wrap { position: relative; }
 
-    .input-wrap .prefix {
+    .prefix {
       position: absolute;
       left: 14px;
       top: 50%;
       transform: translateY(-50%);
       font-size: 14px;
       font-weight: 500;
-      color: var(--text-mid);
+      color: var(--mid);
       pointer-events: none;
-      user-select: none;
     }
 
     input[type="tel"],
@@ -138,35 +102,20 @@
       font-family: inherit;
       font-size: 15px;
       font-weight: 500;
-      color: var(--text-dark);
+      color: var(--dark);
+      background: #fff;
       outline: none;
       transition: border-color 0.2s;
-      background: #fff;
       -webkit-appearance: none;
       appearance: none;
     }
 
-    input[type="tel"] {
-      padding: 0 16px 0 60px;
-    }
-
-    input[type="number"] {
-      padding: 0 16px;
-    }
-
-    input:focus {
-      border-color: var(--accent);
-    }
-
-    input::placeholder {
-      color: var(--text-light);
-      font-weight: 400;
-    }
-
+    input[type="tel"] { padding: 0 16px 0 62px; }
+    input[type="number"] { padding: 0 16px; }
+    input:focus { border-color: var(--dark); }
+    input::placeholder { color: var(--light); font-weight: 400; }
     input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-    }
+    input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
 
     /* ── OPÉRATEURS ── */
     .operateurs {
@@ -176,7 +125,7 @@
     }
 
     .btn-ope {
-      height: 72px;
+      height: 76px;
       border: 1.5px solid var(--border);
       border-radius: var(--radius);
       background: #fff;
@@ -185,85 +134,54 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
       transition: all 0.18s ease;
       position: relative;
       overflow: hidden;
     }
 
-    .btn-ope:hover {
-      border-color: #C0C8D8;
-      background: #FAFAFA;
-    }
+    .btn-ope:hover { background: #FAFAFA; border-color: #C0C8D8; }
+    .btn-ope.actif { border-color: var(--dark); background: #F8F9FB; }
 
-    /* Barre de couleur opérateur en bas */
+    /* Trait couleur opérateur en bas quand actif */
     .btn-ope::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 0; left: 0; right: 0;
       height: 3px;
-      background: transparent;
-      transition: background 0.2s;
+      border-radius: 0 0 2px 2px;
     }
-
-    .btn-ope.moov::after   { background: transparent; }
-    .btn-ope.mtn::after    { background: transparent; }
-    .btn-ope.orange::after { background: transparent; }
-
-    .btn-ope.actif {
-      border-color: var(--accent);
-      background: #F8F9FB;
-    }
-
     .btn-ope.moov.actif::after   { background: #0055AA; }
     .btn-ope.mtn.actif::after    { background: #F5C400; }
     .btn-ope.orange.actif::after { background: #FF6200; }
 
-    /* SVG logos opérateurs */
-    .ope-logo {
-      width: 40px;
-      height: 20px;
-      object-fit: contain;
+    /* Badge opérateur */
+    .ope-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 5px;
+      letter-spacing: 0.3px;
     }
+
+    .moov   .ope-badge { background: #E8F0FB; color: #0055AA; }
+    .mtn    .ope-badge { background: #F5C400; color: #1A1A00; }
+    .orange .ope-badge { background: #FF6200; color: #fff; }
 
     .ope-name {
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
-      color: var(--text-mid);
-      letter-spacing: 0.2px;
+      color: var(--mid);
     }
 
-    .btn-ope.actif .ope-name {
-      color: var(--text-dark);
-    }
-
-    /* Logos SVG inline */
-    .logo-moov {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-mtn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-orange {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    .btn-ope.actif .ope-name { color: var(--dark); }
 
     /* ── MONTANTS RAPIDES ── */
     .montants-rapides {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .btn-montant {
@@ -275,43 +193,42 @@
       font-family: inherit;
       font-size: 13px;
       font-weight: 600;
-      color: var(--text-mid);
+      color: var(--mid);
       transition: all 0.15s;
     }
 
     .btn-montant:hover,
     .btn-montant.actif {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: var(--dark);
+      color: var(--dark);
       background: #F8F9FB;
     }
 
-    /* ── RÉSUMÉ DES FRAIS ── */
+    /* ── RÉSUMÉ FRAIS ── */
     .resume {
       background: #F8F9FB;
       border: 1.5px solid var(--border);
       border-radius: var(--radius);
       padding: 16px;
-      margin: 20px 0 0;
+      margin-top: 14px;
       display: none;
     }
 
     .resume.visible {
       display: block;
-      animation: fadeUp 0.25s ease;
+      animation: fadeUp 0.22s ease;
     }
 
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(6px); }
+      from { opacity: 0; transform: translateY(5px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     .resume-ligne {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       font-size: 13.5px;
-      color: var(--text-mid);
+      color: var(--mid);
       padding: 4px 0;
     }
 
@@ -321,44 +238,38 @@
       padding-top: 12px;
       font-size: 15px;
       font-weight: 700;
-      color: var(--text-dark);
+      color: var(--dark);
     }
 
-    .resume-ligne .val {
-      font-weight: 600;
-      color: var(--text-dark);
-    }
+    .resume-ligne .val { font-weight: 600; color: var(--dark); }
 
-    .resume-ligne.total .val {
-      font-size: 17px;
-    }
-
-    /* ── FOOTER CARTE (bouton) ── */
-    .card-footer {
-      padding: 0 24px 24px;
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 4px 0 0;
     }
 
     /* ── MESSAGE ── */
     .message {
       border-radius: 10px;
-      padding: 12px 16px;
+      padding: 12px 14px;
       font-size: 13.5px;
       font-weight: 500;
       margin-bottom: 14px;
       display: none;
+      gap: 10px;
+      align-items: flex-start;
       line-height: 1.5;
     }
 
-    .message.visible { display: flex; gap: 10px; align-items: flex-start; animation: fadeUp 0.25s ease; }
+    .message.visible { display: flex; animation: fadeUp 0.22s ease; }
     .message.info    { background: #EFF4FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
     .message.succes  { background: #F0FDF4; color: #15803D; border: 1px solid #BBF7D0; }
     .message.erreur  { background: #FFF1F2; color: #B91C1C; border: 1px solid #FECDD3; }
 
-    .msg-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-
     .spinner {
-      width: 16px;
-      height: 16px;
+      width: 16px; height: 16px;
       border: 2px solid rgba(29,78,216,0.25);
       border-top-color: #1D4ED8;
       border-radius: 50%;
@@ -373,7 +284,7 @@
     .btn-payer {
       width: 100%;
       height: 52px;
-      background: var(--accent);
+      background: var(--dark);
       color: #fff;
       border: none;
       border-radius: var(--radius);
@@ -381,196 +292,124 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      letter-spacing: 0.1px;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 1px 2px rgba(16,24,40,0.05);
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 16px;
     }
 
-    .btn-payer:hover:not(:disabled) {
-      background: var(--accent-2);
-      box-shadow: 0 4px 14px rgba(16,24,40,0.18);
-    }
-
-    .btn-payer:active:not(:disabled) {
-      transform: scale(0.99);
-    }
-
-    .btn-payer:disabled {
-      background: #D0D5DD;
-      color: #98A2B3;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-
-    /* ── DIVIDER ── */
-    hr.divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0 0 24px;
-    }
+    .btn-payer:hover:not(:disabled)  { background: #344054; }
+    .btn-payer:active:not(:disabled) { transform: scale(0.99); }
+    .btn-payer:disabled { background: #D0D5DD; color: #98A2B3; cursor: not-allowed; }
 
     /* ── FOOTER PAGE ── */
     .page-footer {
       margin-top: 20px;
+      font-size: 12px;
+      color: var(--light);
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 12px;
-      color: var(--text-light);
     }
 
-    .page-footer svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--text-light);
-      fill: none;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      flex-shrink: 0;
-    }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 360px) {
       .montants-rapides { grid-template-columns: repeat(2, 1fr); }
-      .card-body { padding: 22px 18px; }
-      .card-footer { padding: 0 18px 20px; }
+      .card-body, .card-footer { padding-left: 18px; padding-right: 18px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER — juste le texte, pas de logo -->
   <header class="header">
-    <div class="logo-mark">
-      <svg viewBox="0 0 24 24">
-        <path d="M12 2a10 10 0 1 1 0 20A10 10 0 0 1 12 2z"/>
-        <path d="M8 12h8M12 8v8"/>
-      </svg>
-    </div>
-    <div class="header-text">
-      <h1>Gova Crédit</h1>
-      <p>Transfert d'unités mobiles · Côte d'Ivoire</p>
-    </div>
+    <h1>Gova Crédit</h1>
+    <p>Transfert d'unités mobiles · Côte d'Ivoire</p>
   </header>
 
-  <!-- CARTE FORMULAIRE -->
   <div class="card">
-    <form id="formulaire" class="card-body" novalidate>
+    <form id="formulaire" novalidate>
+      <div class="card-body">
 
-      <!-- Numéro -->
-      <div class="groupe">
-        <div class="section-label">Numéro bénéficiaire</div>
-        <div class="input-wrap">
-          <span class="prefix">+225</span>
-          <input
-            type="tel"
-            id="telephone"
-            placeholder="07 00 00 00 00"
-            inputmode="numeric"
-            maxlength="13"
-            autocomplete="tel"
-            required
-          >
+        <!-- Numéro -->
+        <div class="groupe">
+          <div class="label">Numéro bénéficiaire</div>
+          <div class="input-wrap">
+            <span class="prefix">+225</span>
+            <input type="tel" id="telephone" placeholder="07 00 00 00 00"
+              inputmode="numeric" maxlength="13" autocomplete="tel" required>
+          </div>
         </div>
-      </div>
 
-      <!-- Opérateur -->
-      <div class="groupe">
-        <div class="section-label">Opérateur</div>
-        <div class="operateurs" role="group">
+        <!-- Opérateur -->
+        <div class="groupe">
+          <div class="label">Opérateur</div>
+          <div class="operateurs" role="group">
 
-          <!-- MOOV -->
-          <button type="button" class="btn-ope moov" data-ope="MOOV" aria-pressed="false">
-            <div class="logo-moov">
-              <svg width="52" height="18" viewBox="0 0 52 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <text x="0" y="14" font-family="Arial Black, Arial" font-weight="900" font-size="15" fill="#0055AA" letter-spacing="-0.5">MOOV</text>
-              </svg>
-            </div>
-            <span class="ope-name">Moov</span>
-          </button>
+            <button type="button" class="btn-ope moov" data-ope="MOOV" aria-pressed="false">
+              <span class="ope-badge">MOOV</span>
+              <span class="ope-name">Moov Africa</span>
+            </button>
 
-          <!-- MTN -->
-          <button type="button" class="btn-ope mtn" data-ope="MTN" aria-pressed="false">
-            <div class="logo-mtn">
-              <svg width="44" height="18" viewBox="0 0 44 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="44" height="18" rx="3" fill="#F5C400"/>
-                <text x="4" y="13" font-family="Arial Black, Arial" font-weight="900" font-size="11" fill="#001789">MTN</text>
-              </svg>
-            </div>
-            <span class="ope-name">MTN</span>
-          </button>
+            <button type="button" class="btn-ope mtn" data-ope="MTN" aria-pressed="false">
+              <span class="ope-badge">MTN</span>
+              <span class="ope-name">MTN CI</span>
+            </button>
 
-          <!-- ORANGE -->
-          <button type="button" class="btn-ope orange" data-ope="ORANGE" aria-pressed="false">
-            <div class="logo-orange">
-              <svg width="44" height="18" viewBox="0 0 44 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="44" height="18" rx="3" fill="#FF6200"/>
-                <text x="2" y="13" font-family="Arial Black, Arial" font-weight="900" font-size="10" fill="#FFFFFF">ORANGE</text>
-              </svg>
-            </div>
-            <span class="ope-name">Orange</span>
-          </button>
+            <button type="button" class="btn-ope orange" data-ope="ORANGE" aria-pressed="false">
+              <span class="ope-badge">ORANGE</span>
+              <span class="ope-name">Orange CI</span>
+            </button>
 
+          </div>
+          <input type="hidden" id="operateur" required>
         </div>
-        <input type="hidden" id="operateur" required>
-      </div>
 
-      <!-- Montant -->
-      <div class="groupe" style="margin-bottom: 0;">
-        <div class="section-label">Montant des unités</div>
-        <div class="montants-rapides">
-          <button type="button" class="btn-montant" data-val="500">500</button>
-          <button type="button" class="btn-montant" data-val="1000">1 000</button>
-          <button type="button" class="btn-montant" data-val="2000">2 000</button>
-          <button type="button" class="btn-montant" data-val="5000">5 000</button>
+        <!-- Montant -->
+        <div class="groupe" style="margin-bottom: 0;">
+          <div class="label">Montant des unités (FCFA)</div>
+          <div class="montants-rapides">
+            <button type="button" class="btn-montant" data-val="500">500</button>
+            <button type="button" class="btn-montant" data-val="1000">1 000</button>
+            <button type="button" class="btn-montant" data-val="2000">2 000</button>
+            <button type="button" class="btn-montant" data-val="5000">5 000</button>
+          </div>
+          <input type="number" id="montant" placeholder="Autre montant" min="100" max="100000"
+            inputmode="numeric" style="margin-top: 8px;">
         </div>
-        <input
-          type="number"
-          id="montant"
-          placeholder="Autre montant en FCFA"
-          min="100"
-          max="100000"
-          inputmode="numeric"
-          style="margin-top: 8px;"
-        >
-      </div>
 
-      <!-- Résumé -->
-      <div class="resume" id="resume" aria-live="polite">
-        <div class="resume-ligne">
-          <span>Unités reçues</span>
-          <span class="val" id="aff-demande">—</span>
+        <!-- Résumé des frais -->
+        <div class="resume" id="resume" aria-live="polite">
+          <div class="resume-ligne">
+            <span>Unités reçues</span>
+            <span class="val" id="aff-demande">—</span>
+          </div>
+          <div class="resume-ligne">
+            <span>Frais de service (7%)</span>
+            <span class="val" id="aff-commission">—</span>
+          </div>
+          <div class="resume-ligne total">
+            <span>Total à payer</span>
+            <span class="val" id="aff-total">—</span>
+          </div>
         </div>
-        <div class="resume-ligne">
-          <span>Frais de service (7%)</span>
-          <span class="val" id="aff-commission">—</span>
-        </div>
-        <div class="resume-ligne total">
-          <span>Total à payer</span>
-          <span class="val" id="aff-total">—</span>
-        </div>
+
+      </div><!-- fin card-body -->
+
+      <hr class="divider">
+
+      <div class="card-footer">
+        <div class="message" id="message" role="alert"></div>
+        <button type="submit" class="btn-payer" id="btn-payer" disabled>
+          Payer et recevoir mes unités
+        </button>
       </div>
 
     </form>
-
-    <hr class="divider">
-
-    <div class="card-footer">
-      <!-- Message statut -->
-      <div class="message" id="message" role="alert"></div>
-
-      <!-- Bouton -->
-      <button type="submit" form="formulaire" class="btn-payer" id="btn-payer" disabled>
-        Payer et recevoir mes unités
-      </button>
-    </div>
   </div>
 
-  <!-- FOOTER PAGE -->
   <footer class="page-footer">
-    <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-    Paiement sécurisé par CinetPay · Mobile Money &amp; Wave
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#98A2B3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    </svg>
+    Paiement sécurisé par CinetPay
   </footer>
 
   <script>
@@ -580,8 +419,8 @@
 
     let operateurChoisi = null;
 
-    // ── OPÉRATEUR ──
-    document.querySelectorAll('.btn-ope').forEach((btn) => {
+    // Sélection opérateur
+    document.querySelectorAll('.btn-ope').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.btn-ope').forEach(b => {
           b.classList.remove('actif');
@@ -595,8 +434,8 @@
       });
     });
 
-    // ── MONTANTS RAPIDES ──
-    document.querySelectorAll('.btn-montant').forEach((btn) => {
+    // Montants rapides
+    document.querySelectorAll('.btn-montant').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.btn-montant').forEach(b => b.classList.remove('actif'));
         btn.classList.add('actif');
@@ -610,7 +449,7 @@
       recalculer();
     });
 
-    // ── CALCUL ──
+    // Calcul des frais
     function recalculer() {
       const montant = parseInt(document.getElementById('montant').value) || 0;
       const resume  = document.getElementById('resume');
@@ -625,8 +464,8 @@
         document.getElementById('aff-total').textContent      = total.toLocaleString('fr-FR') + ' FCFA';
 
         resume.classList.add('visible');
-        btn.disabled     = false;
-        btn.textContent  = `Payer ${total.toLocaleString('fr-FR')} FCFA`;
+        btn.disabled    = false;
+        btn.textContent = 'Payer ' + total.toLocaleString('fr-FR') + ' FCFA';
       } else {
         resume.classList.remove('visible');
         btn.disabled    = true;
@@ -634,8 +473,8 @@
       }
     }
 
-    // ── SOUMISSION ──
-    document.getElementById('formulaire').addEventListener('submit', async (e) => {
+    // Soumission
+    document.getElementById('formulaire').addEventListener('submit', async e => {
       e.preventDefault();
 
       const telephone = document.getElementById('telephone').value.trim();
@@ -644,7 +483,7 @@
       const btn       = document.getElementById('btn-payer');
 
       if (!telephone || telephone.replace(/\D/g, '').length < 8) {
-        afficherMessage('erreur', 'Veuillez entrer un numéro de téléphone valide (minimum 8 chiffres).'); return;
+        afficherMessage('erreur', 'Veuillez entrer un numéro valide (min. 8 chiffres).'); return;
       }
       if (!operateur) {
         afficherMessage('erreur', 'Veuillez sélectionner un opérateur.'); return;
@@ -655,46 +494,44 @@
 
       btn.disabled    = true;
       btn.textContent = 'Traitement en cours...';
-      afficherMessage('info', 'Création du paiement en cours, veuillez patienter...', true);
+      afficherMessage('info', 'Création du paiement, veuillez patienter...', true);
 
       try {
-        const rep = await fetch(`${BACKEND}/initier-paiement`, {
+        const rep  = await fetch(`${BACKEND}/initier-paiement`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ telephone, operateur, montant }),
         });
-
         const data = await rep.json();
 
         if (data.succes && data.payment_url) {
           afficherMessage('succes', 'Redirection vers CinetPay...');
           setTimeout(() => { window.location.href = data.payment_url; }, 1000);
         } else {
-          afficherMessage('erreur', data.message || 'Une erreur est survenue. Veuillez réessayer.');
+          afficherMessage('erreur', data.message || 'Une erreur est survenue.');
           resetBtn(montant);
         }
       } catch {
-        afficherMessage('erreur', 'Erreur de connexion. Vérifiez votre internet et réessayez.');
+        afficherMessage('erreur', 'Erreur réseau. Vérifiez votre connexion et réessayez.');
         resetBtn(montant);
       }
     });
 
     function afficherMessage(type, texte, spinner = false) {
-      const el = document.getElementById('message');
+      const el    = document.getElementById('message');
       const icons = { info: 'ℹ', succes: '✓', erreur: '⚠' };
-      el.className = `message ${type} visible`;
-      el.innerHTML = spinner
-        ? `<div class="spinner"></div><span>${texte}</span>`
-        : `<span class="msg-icon">${icons[type]}</span><span>${texte}</span>`;
+      el.className  = 'message ' + type + ' visible';
+      el.innerHTML  = spinner
+        ? '<div class="spinner"></div><span>' + texte + '</span>'
+        : '<span>' + icons[type] + '</span><span>' + texte + '</span>';
     }
 
     function resetBtn(montant) {
       const total = Math.ceil(montant * 1.07 / 10) * 10;
       const btn   = document.getElementById('btn-payer');
       btn.disabled    = false;
-      btn.textContent = `Réessayer — ${total.toLocaleString('fr-FR')} FCFA`;
+      btn.textContent = 'Réessayer — ' + total.toLocaleString('fr-FR') + ' FCFA';
     }
   </script>
-
 </body>
 </html>
