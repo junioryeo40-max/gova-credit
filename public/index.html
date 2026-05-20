@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="Gova Crédit — Achetez des unités Moov, MTN et Orange CI en ligne. Paiement sécurisé par CinetPay.">
+  <title>Gova Crédit — Unités Mobiles en Ligne</title>
+  <style>
+    /* ============================================================
+       BASE ET VARIABLES
+    ============================================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --orange:     #FF6B00;
+      --orange-2:   #FF8C00;
+      --vert:       #28a745;
+      --rouge:      #dc3545;
+      --bleu:       #1565C0;
+      --bleu-clair: #E3F2FD;
+      --gris:       #f5f5f5;
+      --gris-bord:  #e0e0e0;
+      --texte:      #333333;
+      --texte-2:    #666666;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(160deg, #FF6B00 0%, #FF8C00 60%, #FFA000 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 40px;
+    }
+
+    /* ============================================================
+       EN-TÊTE
+    ============================================================ */
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 24px;
+    }
+
+    .header .logo {
+      font-size: 56px;
+      display: block;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .header .sous-titre {
+      font-size: 14px;
+      opacity: 0.88;
+      margin-top: 6px;
+    }
+
+    .badges-operateurs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .badge-moov   { background: #0055AA; }
+    .badge-mtn    { background: #E5B800; color: #333; }
+    .badge-orange { background: rgba(255,255,255,0.25); border: 1px solid rgba(255,255,255,0.5); }
+
+    /* ============================================================
+       CARTE PRINCIPALE
+    ============================================================ */
+    .carte {
+      background: white;
+      border-radius: 22px;
+      padding: 28px 22px;
+      width: 100%;
+      max-width: 430px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    /* ============================================================
+       GROUPES DE FORMULAIRE
+    ============================================================ */
+    .groupe {
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--texte-2);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    input[type="tel"],
+    input[type="number"] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--gris-bord);
+      border-radius: 12px;
+      font-size: 16px;
+      color: var(--texte);
+      outline: none;
+      transition: border-color 0.25s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input[type="tel"]:focus,
+    input[type="number"]:focus {
+      border-color: var(--orange);
+    }
+
+    input::placeholder {
+      color: #bbb;
+    }
+
+    /* Cache les flèches du champ numérique sur Chrome */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+
+    /* ============================================================
+       SÉLECTION OPÉRATEUR
+    ============================================================ */
+    .operateurs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .btn-ope {
+      padding: 14px 8px;
+      border: 2px solid var(--gris-bord);
+      border-radius: 14px;
+      background: white;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--texte-2);
+      line-height: 1.3;
+    }
+
+    .btn-ope .icone {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    /* Styles spécifiques par opérateur quand sélectionné */
+    .btn-ope.moov.actif   { border-color: #0055AA; background: #EEF4FF; color: #0055AA; transform: scale(1.04); }
+    .btn-ope.mtn.actif    { border-color: #E5B800; background: #FFFCE0; color: #8B6E00; transform: scale(1.04); }
+    .btn-ope.orange.actif { border-color: var(--orange); background: #FFF4EC; color: var(--orange); transform: scale(1.04); }
+
+    /* ============================================================
+       MONTANTS RAPIDES
+    ============================================================ */
+    .montants-rapides {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .btn-montant {
+      padding: 11px 4px;
+      border: 2px solid var(--gris-bord);
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--texte-2);
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .btn-montant:hover,
+    .btn-montant.actif {
+      border-color: var(--orange);
+      background: #FFF4EC;
+      color: var(--orange);
+    }
+
+    /* ============================================================
+       RÉSUMÉ DES FRAIS
+    ============================================================ */
+    .resume {
+      background: #FFFAF5;
+      border: 1.5px solid #FFD9B8;
+      border-left: 4px solid var(--orange);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px 0;
+      display: none;
+    }
+
+    .resume.visible {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .resume-ligne {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      color: var(--texte-2);
+      margin-bottom: 9px;
+    }
+
+    .resume-ligne:last-child {
+      margin-bottom: 0;
+      padding-top: 10px;
+      border-top: 1px dashed #FFD9B8;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--texte);
+    }
+
+    .resume-ligne .montant {
+      font-weight: 700;
+      color: var(--texte);
+    }
+
+    .resume-ligne:last-child .montant {
+      color: var(--orange);
+      font-size: 18px;
+    }
+
+    /* ============================================================
+       MESSAGES DE STATUT
+    ============================================================ */
+    .message {
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 16px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .message.visible  { display: block; animation: fadeIn 0.3s ease; }
+    .message.info     { background: var(--bleu-clair); color: var(--bleu); border: 1px solid #BBDEFB; }
+    .message.succes   { background: #E8F5E9; color: #1B5E20; border: 1px solid #A5D6A7; }
+    .message.erreur   { background: #FFEBEE; color: #B71C1C; border: 1px solid #FFCDD2; }
+
+    /* Spinner de chargement */
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(21, 101, 192, 0.3);
+      border-top-color: var(--bleu);
+      border-radius: 50%;
+      animation: tour 0.75s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes tour {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ============================================================
+       BOUTON PAYER
+    ============================================================ */
+    .btn-payer {
+      width: 100%;
+      padding: 17px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-2));
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 6px 20px rgba(255, 107, 0, 0.38);
+      letter-spacing: 0.3px;
+    }
+
+    .btn-payer:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(255, 107, 0, 0.45);
+    }
+
+    .btn-payer:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn-payer:disabled {
+      background: #d0d0d0;
+      color: #999;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* ============================================================
+       PIED DE PAGE
+    ============================================================ */
+    .footer {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 12px;
+      margin-top: 20px;
+      line-height: 1.7;
+    }
+
+    .footer strong {
+      color: white;
+    }
+
+    /* ============================================================
+       RESPONSIVE MOBILE
+    ============================================================ */
+    @media (max-width: 360px) {
+      .montants-rapides { grid-template-columns: repeat(2, 1fr); }
+      .carte { padding: 22px 16px; }
+      .btn-ope .icone { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- EN-TÊTE -->
+  <header class="header">
+    <span class="logo">📱</span>
+    <h1>Gova Crédit</h1>
+    <p class="sous-titre">Achetez vos unités mobiles en ligne — Rapide &amp; Sécurisé</p>
+    <div class="badges-operateurs">
+      <span class="badge badge-moov">Moov</span>
+      <span class="badge badge-mtn">MTN</span>
+      <span class="badge badge-orange">Orange</span>
+    </div>
+  </header>
+
+  <!-- FORMULAIRE PRINCIPAL -->
+  <main class="carte">
+    <form id="formulaire" novalidate>
+
+      <!-- 1. Numéro de téléphone -->
+      <div class="groupe">
+        <label for="telephone">📞 Numéro du bénéficiaire</label>
+        <input
+          type="tel"
+          id="telephone"
+          placeholder="Ex : 07 00 00 00 00"
+          inputmode="numeric"
+          maxlength="13"
+          autocomplete="tel"
+          required
+        >
+      </div>
+
+      <!-- 2. Choix de l'opérateur -->
+      <div class="groupe">
+        <label>📶 Opérateur</label>
+        <div class="operateurs" role="group" aria-label="Choisissez un opérateur">
+          <button type="button" class="btn-ope moov" data-ope="MOOV" aria-pressed="false">
+            <span class="icone">🔵</span>
+            Moov
+          </button>
+          <button type="button" class="btn-ope mtn" data-ope="MTN" aria-pressed="false">
+            <span class="icone">🟡</span>
+            MTN
+          </button>
+          <button type="button" class="btn-ope orange" data-ope="ORANGE" aria-pressed="false">
+            <span class="icone">🟠</span>
+            Orange
+          </button>
+        </div>
+        <!-- Champ caché pour stocker la valeur de l'opérateur -->
+        <input type="hidden" id="operateur" required>
+      </div>
+
+      <!-- 3. Montant -->
+      <div class="groupe">
+        <label>💰 Montant des unités (FCFA)</label>
+
+        <!-- Montants rapides -->
+        <div class="montants-rapides">
+          <button type="button" class="btn-montant" data-val="500">500</button>
+          <button type="button" class="btn-montant" data-val="1000">1 000</button>
+          <button type="button" class="btn-montant" data-val="2000">2 000</button>
+          <button type="button" class="btn-montant" data-val="5000">5 000</button>
+        </div>
+
+        <!-- Saisie manuelle -->
+        <input
+          type="number"
+          id="montant"
+          placeholder="Ou tapez un montant personnalisé"
+          min="100"
+          max="100000"
+          inputmode="numeric"
+        >
+      </div>
+
+      <!-- Résumé des frais (affiché dynamiquement) -->
+      <div class="resume" id="resume" aria-live="polite">
+        <div class="resume-ligne">
+          <span>Unités reçues :</span>
+          <span class="montant" id="aff-demande">-</span>
+        </div>
+        <div class="resume-ligne">
+          <span>Frais de service (7%) :</span>
+          <span class="montant" id="aff-commission">-</span>
+        </div>
+        <div class="resume-ligne">
+          <span>💳 Total à payer :</span>
+          <span class="montant" id="aff-total">-</span>
+        </div>
+      </div>
+
+      <!-- Message de statut -->
+      <div class="message" id="message" role="alert"></div>
+
+      <!-- Bouton principal -->
+      <button type="submit" class="btn-payer" id="btn-payer" disabled>
+        🔒 Payer et recevoir mes unités
+      </button>
+
+    </form>
+  </main>
+
+  <!-- PIED DE PAGE -->
+  <footer class="footer">
+    <p>🔒 Paiement 100 % sécurisé par <strong>CinetPay</strong></p>
+    <p>Mobile Money · Wave · Orange Money · Carte bancaire</p>
+  </footer>
+
+  <script>
+    // ============================================================
+    // CONFIGURATION
+    // En développement local, le backend tourne sur la même origine.
+    // En production, remplacez par l'URL de votre backend Railway :
+    //   const BACKEND = 'https://votre-app.up.railway.app';
+    // ============================================================
+    const BACKEND = window.location.hostname === 'localhost'
+      ? window.location.origin
+      : 'https://VOTRE-BACKEND-RAILWAY.up.railway.app'; // ← À remplacer après déploiement
+
+    // ============================================================
+    // ÉTAT DE L'APPLICATION
+    // ============================================================
+    let operateurChoisi = null;
+
+    // ============================================================
+    // SÉLECTION DE L'OPÉRATEUR
+    // ============================================================
+    document.querySelectorAll('.btn-ope').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // Retirer la sélection précédente
+        document.querySelectorAll('.btn-ope').forEach((b) => {
+          b.classList.remove('actif');
+          b.setAttribute('aria-pressed', 'false');
+        });
+
+        // Activer le bouton cliqué
+        btn.classList.add('actif');
+        btn.setAttribute('aria-pressed', 'true');
+        operateurChoisi = btn.dataset.ope;
+        document.getElementById('operateur').value = operateurChoisi;
+
+        recalculer();
+      });
+    });
+
+    // ============================================================
+    // MONTANTS RAPIDES
+    // ============================================================
+    document.querySelectorAll('.btn-montant').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        // Désélectionner les autres
+        document.querySelectorAll('.btn-montant').forEach((b) => b.classList.remove('actif'));
+
+        btn.classList.add('actif');
+        document.getElementById('montant').value = btn.dataset.val;
+        recalculer();
+      });
+    });
+
+    // Recalcul quand l'utilisateur tape manuellement
+    document.getElementById('montant').addEventListener('input', () => {
+      document.querySelectorAll('.btn-montant').forEach((b) => b.classList.remove('actif'));
+      recalculer();
+    });
+
+    // ============================================================
+    // CALCUL DES FRAIS EN TEMPS RÉEL
+    // ============================================================
+    function recalculer() {
+      const montant = parseInt(document.getElementById('montant').value) || 0;
+      const resume = document.getElementById('resume');
+      const btnPayer = document.getElementById('btn-payer');
+
+      if (montant >= 100 && operateurChoisi) {
+        // Arrondi au 10 FCFA supérieur
+        const total = Math.ceil(montant * 1.07 / 10) * 10;
+        const commission = total - montant;
+
+        document.getElementById('aff-demande').textContent    = montant.toLocaleString('fr-FR') + ' FCFA';
+        document.getElementById('aff-commission').textContent = commission.toLocaleString('fr-FR') + ' FCFA';
+        document.getElementById('aff-total').textContent      = total.toLocaleString('fr-FR') + ' FCFA';
+
+        resume.classList.add('visible');
+        btnPayer.disabled = false;
+        btnPayer.textContent = `🔒 Payer ${total.toLocaleString('fr-FR')} FCFA`;
+      } else {
+        resume.classList.remove('visible');
+        btnPayer.disabled = true;
+        btnPayer.textContent = '🔒 Payer et recevoir mes unités';
+      }
+    }
+
+    // ============================================================
+    // SOUMISSION DU FORMULAIRE
+    // ============================================================
+    document.getElementById('formulaire').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const telephone = document.getElementById('telephone').value.trim();
+      const operateur = document.getElementById('operateur').value;
+      const montant   = parseInt(document.getElementById('montant').value);
+      const btnPayer  = document.getElementById('btn-payer');
+
+      // --- Validations côté client ---
+      if (!telephone || telephone.replace(/\D/g, '').length < 8) {
+        afficherMessage('erreur', '⚠️ Veuillez entrer un numéro de téléphone valide (minimum 8 chiffres).');
+        return;
+      }
+
+      if (!operateur) {
+        afficherMessage('erreur', '⚠️ Veuillez sélectionner un opérateur : Moov, MTN ou Orange.');
+        return;
+      }
+
+      if (!montant || montant < 100) {
+        afficherMessage('erreur', '⚠️ Le montant minimum est de 100 FCFA.');
+        return;
+      }
+
+      // --- Désactivation du bouton pendant le traitement ---
+      btnPayer.disabled = true;
+      btnPayer.textContent = '⏳ Traitement en cours...';
+      afficherMessage('info', '<span class="spinner"></span> Création de votre paiement en cours, veuillez patienter...');
+
+      try {
+        // --- Appel au backend pour créer la transaction ---
+        const reponse = await fetch(`${BACKEND}/initier-paiement`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ telephone, operateur, montant }),
+        });
+
+        const donnees = await reponse.json();
+
+        if (donnees.succes && donnees.payment_url) {
+          // Succès : on redirige vers la page de paiement CinetPay
+          afficherMessage('succes', '✅ Redirection vers CinetPay pour finaliser votre paiement...');
+
+          setTimeout(() => {
+            window.location.href = donnees.payment_url;
+          }, 1200);
+
+        } else {
+          // Erreur retournée par le backend
+          afficherMessage('erreur', '❌ ' + (donnees.message || 'Une erreur est survenue. Veuillez réessayer.'));
+          reinitialiserBouton(montant);
+        }
+
+      } catch (erreur) {
+        // Erreur réseau (pas de connexion, backend éteint, etc.)
+        afficherMessage(
+          'erreur',
+          '❌ Erreur de connexion réseau. Vérifiez votre connexion internet et réessayez.'
+        );
+        reinitialiserBouton(montant);
+        console.error('Erreur réseau:', erreur);
+      }
+    });
+
+    // ============================================================
+    // FONCTIONS UTILITAIRES
+    // ============================================================
+
+    // Affiche un message de statut (info / succes / erreur)
+    function afficherMessage(type, texte) {
+      const el = document.getElementById('message');
+      el.className = `message ${type} visible`;
+      el.innerHTML = texte;
+    }
+
+    // Réactive le bouton après une erreur
+    function reinitialiserBouton(montant) {
+      const total = Math.ceil(montant * 1.07 / 10) * 10;
+      const btnPayer = document.getElementById('btn-payer');
+      btnPayer.disabled = false;
+      btnPayer.textContent = `🔒 Réessayer — ${total.toLocaleString('fr-FR')} FCFA`;
+    }
+  </script>
+
+</body>
+</html>
